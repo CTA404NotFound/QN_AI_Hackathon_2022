@@ -45,7 +45,7 @@ def remove_symbol_data(path_data, col):
         Read data from .csv file and Implement the two above remove function. Then save to new .csv file
     Args:
         path_data (str): path of data train
-        col (str): name of column
+        col (str): name of column`321`  
     """    
 
     list = []
