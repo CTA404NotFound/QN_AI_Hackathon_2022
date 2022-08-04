@@ -1,1 +1,3 @@
 venv/
+/dataset/test_v1.csv
+/dataset/train_v1.csv
