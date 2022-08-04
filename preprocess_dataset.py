@@ -11,12 +11,12 @@ from vncorenlp import VnCoreNLP
 
 dataset = './dataset/public_final.csv'
 df = pd.read_csv(dataset)
-stop_word=[]
-txt_file = open("./dataset/vietnamese-stopwords-dash.txt", "r")
+stop_word = []
+txt_file = open("./dataset/vietnamese-stopwords-dash.txt", "r", encoding = "utf-8")
 file_content = txt_file.read()
 content_list = file_content.split("\n")
 stemmer = PorterStemmer()
-vnp=VnCoreNLP("./vncorenlp/VnCoreNLP-1.1.1.jar",annotators="wseg,pos,parse")
+vnp = VnCoreNLP("./vncorenlp/VnCoreNLP-1.1.1.jar",annotators="wseg")
 dict_check = {}
 
 def remove_url(text):
@@ -45,7 +45,7 @@ def word_tokenizer(text):
     return word_segmented_text
 
 def preprocessing(text):
-    text = remove_url(text) 
+    text = remove_url(text)
     text = handle_emoji(text)
     text = text.lower() 
     text = re.sub(r'[^\w\s]', '', text)
