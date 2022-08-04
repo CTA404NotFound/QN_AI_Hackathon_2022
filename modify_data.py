@@ -26,17 +26,21 @@ def process_labels_csv(data_frame):
     return data_frame
 
 if __name__ == '__main__':
-    df_train = pd.read_csv("./dataset/train_final.csv")
-    df_test = pd.read_csv("./dataset/public_final.csv")
+    df_train = pd.read_csv("./dataset/train_v1.csv")
+    df_test = pd.read_csv("./dataset/test_v1.csv")
     
-    df_train = process_labels_csv(df_train)
-    df_test = process_labels_csv(df_test)
+    # df_train = process_labels_csv(df_train)
+    # df_test = process_labels_csv(df_test)
     
-    df_train.to_csv("./dataset/train_v1.csv")
-    df_test.to_csv("./dataset/test_v1.csv")
+    train_raw_reviews = df_train.Review.tolist()
+    train_clean_reviews = [preprocessing(review) for review in train_raw_reviews]
     
-    # raw_reviews = df_train.Review.tolist()
-    # clean_reviews = []
-    # clean_reviews.append(preprocessing([review for review in raw_reviews]))
-    # print(clean_reviews)
+    test_raw_reviews = df_test.Review.tolist()
+    test_clean_reviews = [preprocessing(review) for review in test_raw_reviews]
+    
+    df_train["clean_review"] = train_clean_reviews
+    df_test["clean_review"] = test_clean_reviews
+    
+    df_train.to_csv("train_v2.csv")
+    df_test.to_csv("test_v2.csv")
     

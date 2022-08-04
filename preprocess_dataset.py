@@ -49,11 +49,11 @@ def preprocessing(text):
     text = handle_emoji(text)
     text = text.lower() 
     text = re.sub(r'[^\w\s]', '', text)
-    text = re.sub(r'(ks)', 'khách sạn', text)
+    text = re.sub(r'(ks)', 'khách_sạn', text)
     # text = sc1(text)
     text = word_tokenizer(text)
     text = remove_stopwords(text)
-    print(text)
+    # print(text)
     text = " ".join(text[0])
 
     return text
