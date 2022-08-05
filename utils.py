@@ -41,7 +41,7 @@ def convert_tokens_to_features(texts, tokenizer, segmenter, max_seq_length=256, 
     for text in texts:
         text = word_segmentation(text, segmenter)
         encodings = tokenizer.encode_plus(
-            text, padding="max_length", max_length=max_seq_length, truncation=True)
+            text, padding = "max_length", max_length = max_seq_length, truncation=True)
         input_ids.append(encodings["input_ids"])
         attention_masks.append(encodings["attention_mask"])
 
