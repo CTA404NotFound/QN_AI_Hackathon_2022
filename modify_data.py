@@ -36,5 +36,5 @@ if __name__ == '__main__':
     
     
     data["clean_review"] = train_clean_reviews
-    data.to_csv("standard_data_v1.csv")
+    data.to_csv("processed_data_v1.csv")
     
