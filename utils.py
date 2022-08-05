@@ -46,7 +46,8 @@ def convert_tokens_to_features(texts, tokenizer, segmenter, max_seq_length=256, 
         attention_masks.append(encodings["attention_mask"])
 
     if labels is not None:
-        return torch.tensor(input_ids, dtype=torch.float32), torch.tensor(attention_masks, dtype=torch.float32), \
+        return torch.tensor(input_ids, dtype=torch.float32), \
+            torch.tensor(attention_masks, dtype=torch.float32), \
             torch.tensor(labels, dtype=torch.float32)
 
     return torch.tensor(input_ids, dtype=torch.float32), \
