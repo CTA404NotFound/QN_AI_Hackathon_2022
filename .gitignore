@@ -2,3 +2,6 @@ venv/
 /dataset/test_v1.csv
 /dataset/train_v1.csv
 /model_weights
+*.zip
+/__pycache__/
+*.pyc
