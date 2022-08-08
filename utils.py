@@ -53,7 +53,7 @@ def convert_tokens_to_features(texts, tokenizer, segmenter, max_seq_length=256, 
     return torch.tensor(input_ids, dtype=torch.float32), \
         torch.tensor(attention_masks, dtype=torch.float32)
 
-def convert_output_format(output_onehot_tensor):
+def convert_output_format(output_one_hot_tensor):
     """Convert the model's output vector into standard vector format following the organizer's ones
 
     Args:
@@ -62,12 +62,12 @@ def convert_output_format(output_onehot_tensor):
     Returns:
         List: List of sentimental polarity scores of aspects following the organizer's format
     """
-    output_tensor = torch.reshape(output_onehot_tensor, shape = (-1,))
+    output_tensor = torch.reshape(output_one_hot_tensor, shape = (-1,))
     standard_output = []
     for i in range(0, len(output_tensor), 5):
         if not any(output_tensor[i: i + 5]):
             standard_output.append(0)
-        for j in range(1, 5):
+        for j in range(0, 5):
             if output_tensor[i + j] == 1:
-                standard_output.append(j)
+                standard_output.append(j + 1)
     return standard_output
