@@ -1,5 +1,5 @@
 # import numpy as np
-from sklearn.metrics import f1_score
+from sklearn.metrics import f1_score, precision_score, recall_score
 
 def generate_format_array(aspect_idx, prediction, label):
     """Function to generate format arrays of prediction and ground truth values.
@@ -61,6 +61,8 @@ def eval_metrics(aspect_idx, prediction, label):
             denominator.append(16)
         aspect_r2_score = 1 - float(sum(numerator) / sum(denominator))
     
+    aspect_precision = precision_score(format_pred, format_label)
+    aspect_recall = recall_score(format_pred, format_label)
     aspect_f1_score = f1_score(format_pred, format_label)
     
-    return aspect_f1_score, aspect_r2_score
+    return aspect_precision, aspect_recall, aspect_f1_score, aspect_r2_score
