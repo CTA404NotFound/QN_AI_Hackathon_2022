@@ -1,3 +1,5 @@
+from base64 import encode
+import encodings
 from multiprocessing.spawn import _main
 from unittest.main import main
 from transformers import AutoTokenizer, T5ForConditionalGeneration
@@ -9,7 +11,7 @@ from nltk.stem.porter import PorterStemmer
 from nltk.stem.lancaster import LancasterStemmer
 from vncorenlp import VnCoreNLP
 
-dataset = './dataset/public_final.csv'
+dataset = './dataset/test_dataset.csv'
 df = pd.read_csv(dataset)
 stop_word = []
 txt_file = open("./dataset/vietnamese-stopwords-dash.txt", "r", encoding = "utf-8")
@@ -17,7 +19,7 @@ file_content = txt_file.read()
 content_list = file_content.split("\n")
 stemmer = PorterStemmer()
 vnp = VnCoreNLP("./vncorenlp/VnCoreNLP-1.1.1.jar",annotators="wseg")
-dict_check = {}
+
 
 def remove_url(text):
     text = re.sub(r"http\S+", "", text)
@@ -33,11 +35,12 @@ def handle_emoji(string):
 
 def remove_stopwords(text):
     text = [word for word in text if word not in content_list]
+    # new_text = " ".join(text)
     return text
 
 def stemming(text):
-
     text = [stemmer.stem(word) for word in text]
+    # new_text = " ".join(text)
     return text
 
 def word_tokenizer(text):
@@ -101,9 +104,17 @@ def process():
     df1.loc[df1.di_chuyen ==1, 'di_chuyen'] = 'very_negative'
     df1.loc[df1.mua_sam ==1, 'mua_sam'] = 'very_negative'
 
+    a = df1['giai_tri'].to_list()
+    b = df1['luu_tru'].to_list()
+    c = df1['nha_hang'].to_list()
+    d = df1['an_uong'].to_list()
+    e = df1['di_chuyen'].to_list()
+    f = df1['mua_sam'].to_list()
+
+    dict_check = {}
     labels=[]
     value = 0
-    # temp = ""
+    temp = ''
     for i in range(len(a)):
         dict_check['giai_tri']=a[i]
         dict_check['luu_tru']=b[i]
@@ -111,13 +122,12 @@ def process():
         dict_check['an_uong']=d[i]
         dict_check['di_chuyen']=e[i]
         dict_check['mua_sam']=f[i]
-        print(dict_check)
+        # print(dict_check)
         for name, seq in dict_check.items():
             if(seq != 0):
                 temp1 = "{"+name+"#"+seq+"},"
                 temp+=temp1
         labels.append(temp)
-        temp=''
         dict_check={}
         #print(names)
         # break
@@ -125,10 +135,11 @@ def process():
     for i in range(len(labels)):
         labels[i] = labels[i].rstrip(labels[i][-1])
 
-    value = 0 
-    df1['labels']=labels
+    # value = 0 
+    # df1['labels']=labels
 
-    df1.to_csv('./dataset/clean_test_dataset.csv')
+    df1.to_csv('./dataset/clean_test_dataset.csv', encoding='utf-8')
 
 if __name__ == "__main__":
     process()
+    print("Everything is done!")
