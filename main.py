@@ -138,23 +138,29 @@ if __name__=="__main__":
     test_df = pd.read_csv("./dataset/test_dataset.csv")
     labels = convert_labels_format(test_df)
     texts = test_df.clean_review.tolist()
+
+    sample_text = "Bệnh_viện rất đẹp, nơi khám chữa bệnh uy_tín và chất_lượng"
+    outputs = inference(sample_text, model, tokenizer, device)
+    output_one_hot_vector, label = outputs
+    print(output_one_hot_vector)
+
     # print(labels[0])
     # print(type(labels[0]))
-    for i, text in enumerate(texts):
-        print(f"----Inferencing text number {i + 1}----")
-        outputs = inference(text, model, tokenizer, device)
-        output_one_hot_vector, label = outputs[0], outputs[1]
-        standard_output = convert_output_format(output_one_hot_vector)
-        predictions.append(standard_output)
+    # for i, text in enumerate(texts):
+    #     print(f"----Inferencing text number {i + 1}----")
+    #     outputs = inference(text, model, tokenizer, device)
+    #     output_one_hot_vector, label = outputs[0], outputs[1]
+    #     standard_output = convert_output_format(output_one_hot_vector)
+    #     predictions.append(standard_output)
     
-    f1_scores, r2_scores = [], []
-    aspect_f1, aspect_r2 = eval_metrics(0, predictions, labels)
-    # print(aspect_f1, aspect_r2)
-    for j in range(6):
-        aspect_f1, aspect_r2 = eval_metrics(j, predictions, labels)
-        print(f"F1 score and R2 score of aspect {ASPECT_DICT[j]}: {aspect_f1}, {aspect_r2}")
-        f1_scores.append(aspect_f1)
-        r2_scores.append(aspect_r2)
-    final_res = 1/6 * float(sum([a*b for a, b in zip(f1_scores, r2_scores)]))
-    print(f"Final metric: {final_res}") 
+    # f1_scores, r2_scores = [], []
+    # aspect_f1, aspect_r2 = eval_metrics(0, predictions, labels)
+    # # print(aspect_f1, aspect_r2)
+    # for j in range(6):
+    #     aspect_f1, aspect_r2 = eval_metrics(j, predictions, labels)
+    #     print(f"F1 score and R2 score of aspect {ASPECT_DICT[j]}: {aspect_f1}, {aspect_r2}")
+    #     f1_scores.append(aspect_f1)
+    #     r2_scores.append(aspect_r2)
+    # final_res = 1/6 * float(sum([a*b for a, b in zip(f1_scores, r2_scores)]))
+    # print(f"Final metric: {final_res}") 
             
