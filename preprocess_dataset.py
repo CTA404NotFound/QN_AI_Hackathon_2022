@@ -41,7 +41,9 @@ def stemming(text):
     return text
 
 def word_tokenizer(text):
-    word_segmented_text = vnp.tokenize(text)
+    tokens = vnp.tokenize(text)
+    tokens = [t for ts in tokens for t in ts]
+    word_segmented_text = " ".join(tokens)
     return word_segmented_text
 
 def preprocessing(text):
