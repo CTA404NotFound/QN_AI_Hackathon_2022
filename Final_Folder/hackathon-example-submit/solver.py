@@ -11,6 +11,7 @@ def classify_model(bert_name):
     base_model = AutoModel.from_pretrained(bert_name,
                                            config = bert_config)
     classifier_model = ReviewClassifierModel(model = base_model,
+                                             model_path = MODEL_FILE_NAME,
                                              tokenizer = tokenizer)
     return classifier_model
 
