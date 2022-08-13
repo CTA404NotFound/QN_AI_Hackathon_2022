@@ -14,12 +14,13 @@ import demoji
 from nltk.stem.porter import PorterStemmer
 from nltk.stem.lancaster import LancasterStemmer
 from vncorenlp import VnCoreNLP
+from config import VN_STOP_WORD,VNCORENLP
 
-stopwords_file = open("D:/AI Camp/QN_AI_Hackathon_2022/dataset/vietnamese-stopwords-dash.txt", "r", encoding = "utf-8")
+stopwords_file = open(VN_STOP_WORD, "r", encoding = "utf-8")
 stopwords_content = stopwords_file.read()
 stopwords_list = stopwords_content.split("\n")
 stemmer = PorterStemmer()
-vnp = VnCoreNLP("D:/AI Camp/QN_AI_Hackathon_2022/vncorenlp/VnCoreNLP-1.1.1.jar",annotators="wseg")
+vnp = VnCoreNLP(VNCORENLP,annotators="wseg")
 
 def remove_url(text):
     text = re.sub(r"http\S+", "", text)
