@@ -1,9 +1,9 @@
 from flask import Flask, request, jsonify
 import config
 import settings
-from solver import ClassifyReviewSolver
+from solver import solve
 
-review_solver = ClassifyReviewSolver(config)
+# review_solver = ClassifyReviewSolver(config)
 
 app = Flask(__name__)
 
@@ -17,7 +17,7 @@ def solve():
     RATING_ASPECTS = ["giai_tri", "luu_tru", "nha_hang", "an_uong", "di_chuyen", "mua_sam"]
 
     review_sentence = request.args.get('review_sentence')
-    predict_results = review_solver.solve(review_sentence)
+    predict_results = solve(review_sentence)
 
     output = {
         "review": review_sentence,
