@@ -11,7 +11,7 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 RUN pip install gdown
 
 # STEP 7: Download file weight
-RUN gdown "https://drive.google.com/uc?export=download&id=1VIplhJoaKPI08Qcdq6FhPk_dMvGOfDMp"
+RUN gdown "https://drive.google.com/file/d/1dkmxz1Il_Gs4X50grtWEqYCzSZm9TSvv"
 
 # STEP 8: RUN COMMAND
 COPY . /manhpv3_tabai
