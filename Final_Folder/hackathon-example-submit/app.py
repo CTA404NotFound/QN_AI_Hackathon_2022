@@ -2,6 +2,9 @@ from flask import Flask, request, jsonify
 import config
 import settings
 from solver import solve
+from config import *
+
+import torch
 
 # review_solver = ClassifyReviewSolver(config)
 
@@ -17,7 +20,8 @@ def solve():
     RATING_ASPECTS = ["giai_tri", "luu_tru", "nha_hang", "an_uong", "di_chuyen", "mua_sam"]
 
     review_sentence = request.args.get('review_sentence')
-    predict_results = solve(review_sentence)
+    device = torch.device('cpu')
+    predict_results = solve(review_sentence, device, BERT_NAME)
 
     output = {
         "review": review_sentence,

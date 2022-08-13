@@ -30,9 +30,8 @@ class PhoBertSentimentClassification(nn.Module):
 
 class ReviewClassifierModel(nn.Module):
 
-    def __init__(self, model_path, tokenizer):
+    def __init__(self, model_path):
         super(ReviewClassifierModel, self).__init__()
-        self.tokenizer = tokenizer
         self.model = PhoBertSentimentClassification()
         self.setup(model_path)
 
@@ -42,21 +41,8 @@ class ReviewClassifierModel(nn.Module):
                        map_location=torch.device('cpu')),
             strict=False)
         self.model.to(torch.device(DEVICE))
-    def convert_output_format(output_one_hot_vector):
-        output_tensor = torch.reshape(output_one_hot_vector, shape = (-1,))
-        standard_output = []
-        for i in range(0, len(output_tensor), 5):
-            if not any(output_tensor[i: i + 5]):
-                standard_output.append(0)
-            for j in range(0, 5):
-                if output_tensor[i + j] == 1:
-                    standard_output.append(j + 1)
-        return standard_output
-
-    def predict(self, ids_tensor, mask_tensor):
-        # self.model.eval()
-        # with torch.no_grad():
-        results = self.model(ids_tensor, mask_tensor)
-        output_one_hot_vector = torch.where(torch.sigmoid(results) > 0.99, 1., 0.)
-        output = self.convert_output_format(output_one_hot_vector)
-        return output
+    
+    def predict(self, input_ids, input_mask):
+        cls_output = self.model(input_ids, input_mask)
+        output_one_hot_vector = torch.where(torch.sigmoid(cls_output) > 0.99, 1., 0.)
+        return output_one_hot_vector

@@ -63,10 +63,35 @@ def preprocessing(text):
 
     return text
 
-def encode_review(text, tokenizer, max_seq_length=256):
+def encode_review(text, tokenizer, device, max_seq_length=256):
     text = preprocessing(text)
-    encodings = tokenizer.encode_plus(
-        text, padding = "max_length", max_length = max_seq_length, truncation=True)
-    input_ids = encodings["input_ids"]
-    attention_mask = encodings["attention_mask"]
-    return input_ids, attention_mask
+    encodings = tokenizer.encode_plus(text, max_length = max_seq_length,
+                                           truncation = True,
+                                           add_special_tokens = True,
+                                           padding = "max_length",
+                                           return_attention_mask = True,
+                                           return_token_type_ids = False,
+                                           return_tensors = "pt")
+    
+    input_ids = encodings["input_ids"].to(device)
+    attention_mask = encodings["attention_mask"].to(device)
+    return torch.tensor(input_ids), torch.tensor(attention_mask)
+
+def convert_output_format(output_one_hot_tensor):
+    """Convert the model's output vector into standard vector format following the organizer's ones
+
+    Args:
+        output_onehot_tensor (Tensor): The model's output vector
+
+    Returns:
+        List: List of sentimental polarity scores of aspects following the organizer's format
+    """
+    output_tensor = torch.reshape(output_one_hot_tensor, shape = (-1,))
+    standard_output = []
+    for i in range(0, len(output_tensor), 5):
+        if not any(output_tensor[i: i + 5]):
+            standard_output.append(0)
+        for j in range(0, 5):
+            if output_tensor[i + j] == 1:
+                standard_output.append(j + 1)
+    return standard_output
