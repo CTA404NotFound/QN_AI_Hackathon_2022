@@ -1,23 +1,24 @@
 from transformers import AutoModel
 from transformers import AutoTokenizer, AutoConfig
-from processing import encode_review
+from processing import encode_review, convert_output_format
 from model import ReviewClassifierModel
 from config import *
 
-def classify_model(bert_name):
-    tokenizer = AutoTokenizer.from_pretrained(bert_name)
-    bert_config = AutoConfig.from_pretrained(bert_name)
-    bert_config.max_position_embeddings = 258
-    base_model = AutoModel.from_pretrained(bert_name,
-                                           config = bert_config)
-    classifier_model = ReviewClassifierModel(model = base_model,
-                                             model_path = MODEL_FILE_NAME,
-                                             tokenizer = tokenizer)
-    return classifier_model
+import torch
 
-def solve(text):
-    input_ids, attention_mask = encode_review(text)
-    output = classify_model(input_ids, attention_mask)
+def inference(input_ids, input_mask, BERT_NAME):
+    bert_config = AutoConfig.from_pretrained(BERT_NAME)
+    bert_config.max_position_embeddings = 258
+    classifier_model = ReviewClassifierModel(model_path = MODEL_FILE_NAME)
+    
+    output_one_hot_vector = classifier_model.predict(input_ids, input_mask)
+    standard_output = convert_output_format(output_one_hot_vector)
+    return standard_output
+
+def solve(text, device, BERT_NAME):
+    tokenizer = AutoTokenizer.from_pretrained(BERT_NAME)
+    input_ids, attention_mask = encode_review(text, tokenizer, device)
+    output = inference(input_ids, attention_mask, BERT_NAME)
     return output
 
 # class ClassifyReviewSolver:
