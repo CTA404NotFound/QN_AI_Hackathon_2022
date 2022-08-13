@@ -1,6 +1,6 @@
 ## HACKATHON CHALLENGE 2 DOCKER DEMO
 **Folder contains the modules**
-- `model.py`: This module used for loading model 
+- `model.py`: This module used for loading model
 - `processing.py`: This module used for processing raw text before pass to model
 - `solver.py`: This module used for classifying (**DO NOT MODIFY FUNCTION NAME (solve)**)
 - `app.py`: This module used for expose API (**DO NOT MODIFY**)
