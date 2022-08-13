@@ -1,56 +1,72 @@
-from tensorflow.keras.preprocessing.sequence import pad_sequences
 import torch
+import re
+import demoji
 
-class TextProcessing:
-    def __init__(self, tokenizer: object, rdrsegmenter: object, max_length: int, shuffle: object = False) -> None:
-        """
-        :param sentence The review that we want to encode
-        :param max_length: The maximum length of the input sequence
-        :param batch_size: The number of samples to be processed in a single batch
-        :param shuffle: Whether to shuffle the data or not, defaults to False (optional)
-        """
-        self.tokenizer = tokenizer
-        self.rdrsegmenter = rdrsegmenter
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        self.max_length = max_length
-        self.shuffle = shuffle
+from base64 import encode
+import encodings
+from multiprocessing.spawn import _main
+from unittest.main import main
+from transformers import AutoTokenizer, T5ForConditionalGeneration
+from tqdm import tqdm
+import pandas as pd
+import re
+import demoji
+from nltk.stem.porter import PorterStemmer
+from nltk.stem.lancaster import LancasterStemmer
+from vncorenlp import VnCoreNLP
 
-    def tokenizing_text(self, review: str) -> list:
-        
+stopwords_file = open("D:/AI Camp/QN_AI_Hackathon_2022/dataset/vietnamese-stopwords-dash.txt", "r", encoding = "utf-8")
+stopwords_content = stopwords_file.read()
+stopwords_list = stopwords_content.split("\n")
+stemmer = PorterStemmer()
+vnp = VnCoreNLP("D:/AI Camp/QN_AI_Hackathon_2022/vncorenlp/VnCoreNLP-1.1.1.jar",annotators="wseg")
 
-    # def add_subword(self, sentence: str) -> list:
-    #     """
-    #     It takes a sentence and returns a list of subwords.
+def remove_url(text):
+    text = re.sub(r"http\S+", "", text)
+    return text
 
-    #     :param sentence: The sentence to be tokenized
-    #     :return: A list of subwords
-    #     """
-    #     tokenized_sentence = []
-    #     for word in sentence.split():
-    #         sub_words = self.tokenizer.tokenize(word)
-    #         tokenized_sentence.extend(sub_words)
-    #     return tokenized_sentence
+def handle_emoji(string):
+    emojis = demoji.findall(string)
 
-    def padding_data(self, sub_words: list) -> tuple:
-        """
-        **The function takes in a list of subword tokens and returns a padded sequence of subword tokens and
-        a list of attention masks.**
+    for emoji in emojis:
+        string = string.replace(emoji, " " + emojis[emoji].split(":")[0])
 
-        The function uses the tokenizer to convert the subword tokens to their corresponding ids. Then it
-        pads the sequence of ids to the maximum length of the sequence. The attention masks are created by
-        assigning a 1 to the ids that are not 0 and a 0 to the ids that are 0
+    return string
 
-        :param sub_words: The list subwords of a sentence
-        :return: x_padding and attention_masks
-        """
-        # print(sub_words)
-        input_ids = pad_sequences([self.tokenizer.convert_tokens_to_ids(sub_words)],
-                                  maxlen=self.max_length, dtype="long",
-                                  value=self.tokenizer.pad_token_id,
-                                  truncating="post", padding="post")
-        # print(x_padding)
-        input_ids_tensor = torch.tensor(input_ids).type(torch.LongTensor).to(self.device)
-        input_mask = [[float(i != self.tokenizer.pad_token_id) for i in ii] for ii in input_ids]
-        input_mask_tensor = torch.tensor(input_mask).type(torch.LongTensor).to(self.device)
+def remove_stopwords(text):
+    text = [word for word in text if word not in stopwords_list]
+    # new_text = " ".join(text)
+    return text
 
-        return input_ids_tensor, input_mask_tensor
+def stemming(text):
+    text = [stemmer.stem(word) for word in text]
+    # new_text = " ".join(text)
+    return text
+
+def word_tokenizer(text):
+    tokens = vnp.tokenize(text)
+    # tokens = [t for ts in tokens for t in ts]
+    # word_segmented_text = " ".join(tokens)
+    return tokens
+
+def preprocessing(text):
+    text = remove_url(text)
+    text = handle_emoji(text)
+    text = text.lower() 
+    text = re.sub(r'[^\w\s]', '', text)
+    text = re.sub(r'(ks)', 'khách_sạn', text)
+    # text = sc1(text)
+    text = word_tokenizer(text)
+    text = remove_stopwords(text)
+    # print(text)
+    text = " ".join(text[0])
+
+    return text
+
+def encode_review(text, tokenizer, max_seq_length=256):
+    text = preprocessing(text)
+    encodings = tokenizer.encode_plus(
+        text, padding = "max_length", max_length = max_seq_length, truncation=True)
+    input_ids = encodings["input_ids"]
+    attention_mask = encodings["attention_mask"]
+    return input_ids, attention_mask
