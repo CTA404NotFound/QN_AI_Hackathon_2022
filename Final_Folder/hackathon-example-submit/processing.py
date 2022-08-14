@@ -3,24 +3,30 @@ import re
 import demoji
 
 from base64 import encode
-import encodings
+# import encodings
 from multiprocessing.spawn import _main
 from unittest.main import main
-from transformers import AutoTokenizer, T5ForConditionalGeneration
-from tqdm import tqdm
+from transformers import AutoTokenizer
+# from tqdm import tqdm
 import pandas as pd
 import re
 import demoji
 from nltk.stem.porter import PorterStemmer
 from nltk.stem.lancaster import LancasterStemmer
-from vncorenlp import VnCoreNLP
+
+from underthesea import word_tokenize
 from config import VN_STOP_WORD, VNCORENLP
+
+from underthesea import word_tokenize
+from config import VN_STOP_WORD
+# from config import VN_STOP_WORD, VNCORENLP
+
 
 stopwords_file = open(VN_STOP_WORD, "r", encoding = "utf-8")
 stopwords_content = stopwords_file.read()
 stopwords_list = stopwords_content.split("\n")
 stemmer = PorterStemmer()
-vnp = VnCoreNLP(VNCORENLP,annotators="wseg")
+# vnp = VnCoreNLP(VNCORENLP,annotators="wseg")
 
 def remove_url(text):
     text = re.sub(r"http\S+", "", text)
@@ -44,10 +50,15 @@ def stemming(text):
     # new_text = " ".join(text)
     return text
 
+# def word_tokenizer(text):
+#     tokens = vnp.tokenize(text)
+#     # tokens = [t for ts in tokens for t in ts]
+#     # word_segmented_text = " ".join(tokens)
+#     return tokens
+
 def word_tokenizer(text):
-    tokens = vnp.tokenize(text)
-    # tokens = [t for ts in tokens for t in ts]
-    # word_segmented_text = " ".join(tokens)
+    text = text.replace(".", "")
+    tokens = word_tokenize(text)
     return tokens
 
 def preprocessing(text):
@@ -59,7 +70,7 @@ def preprocessing(text):
     # text = sc1(text)
     text = word_tokenizer(text)
     text = remove_stopwords(text)
-    # print(text)
+    # # print(text)
     text = " ".join(text[0])
 
     return text

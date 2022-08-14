@@ -1,7 +1,7 @@
 import torch.nn as nn
 import torch
 
-from transformers import AutoModel, AutoTokenizer
+from transformers import AutoModel
 from config import *
 
 class PhoBertSentimentClassification(nn.Module):
@@ -11,8 +11,13 @@ class PhoBertSentimentClassification(nn.Module):
 
     def __init__(self):
         super(PhoBertSentimentClassification, self).__init__()
-        self.bert = AutoModel.from_pretrained("vinai/phobert-base")
+
+        self.bert = AutoModel.from_pretrained(BERT_NAME)
         self.dropout = nn.Dropout(p = 0.1)
+
+        self.bert = AutoModel.from_pretrained(BERT_NAME)
+        self.dropout = nn.Dropout(p = 0.1)
+
         # self.n_labels = n_labels
         self.fc = nn.Linear(self.bert.config.hidden_size, 30)
         nn.init.normal_(self.fc.weight, std = 0.02)

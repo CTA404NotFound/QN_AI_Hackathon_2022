@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 import config
-import settings
-from solver import solve
+import settings 
+from solver import solve as sv
 from config import *
 
 import torch
@@ -21,12 +21,13 @@ def solve():
 
     review_sentence = request.args.get('review_sentence')
     device = torch.device('cpu')
-    predict_results = solve(review_sentence, device, BERT_NAME)
+    predict_results = sv(review_sentence, device, BERT_NAME)
 
     output = {
         "review": review_sentence,
         "results": {}
       }
+      
     for count, r in enumerate(RATING_ASPECTS):
         output["results"][r] = predict_results[count]
 
