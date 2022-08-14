@@ -1,6 +1,6 @@
 from transformers import AutoModel
 from transformers import AutoTokenizer, AutoConfig
-from processing import encode_review, convert_output_format
+from processing import encode_review, format_label
 from model import ReviewClassifierModel
 from config import *
 
@@ -12,7 +12,7 @@ def inference(input_ids, input_mask, BERT_NAME):
     classifier_model = ReviewClassifierModel(model_path = MODEL_FILE_NAME)
     
     output_one_hot_vector = classifier_model.predict(input_ids, input_mask)
-    standard_output = convert_output_format(output_one_hot_vector)
+    standard_output = format_label(output_one_hot_vector)
     return standard_output
 
 def solve(text, device, BERT_NAME):
