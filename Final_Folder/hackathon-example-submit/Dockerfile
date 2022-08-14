@@ -10,12 +10,17 @@ RUN pip install --upgrade pip
 RUN pip3 install --no-cache-dir -r requirements.txt
 RUN pip install gdown
 
+# # Install OpenJDK-11
+# RUN apt-get update && \
+#     apt-get install -y openjdk-11-jre-headless && \
+#     apt-get clean;
+
 # STEP 7: Download file weight
-RUN gdown "https://drive.google.com/file/d/1e7G43tIwy-XWHxyoJ3-t6g6joCCX610C/view?usp=sharing"
+RUN gdown "https://drive.google.com/u/6/uc?id=1e7G43tIwy-XWHxyoJ3-t6g6joCCX610C&export=download"
 #Download file stop word
-RUN gdown "https://drive.google.com/file/d/1nbKTtYPgHCwCIPObsuyyaYgH6a0JJ8pZ/view?usp=sharing"
-#Download file vncorenlp folder
-RUN gdown "https://drive.google.com/drive/folders/17gNuoKfOC02q57Qux0COG3Q_sFheAYja?usp=sharing"
+RUN gdown "https://drive.google.com/u/6/uc?id=1nbKTtYPgHCwCIPObsuyyaYgH6a0JJ8pZ&export=download"
+
+
 
 # STEP 8: RUN COMMAND
 COPY . /cta404notfound
