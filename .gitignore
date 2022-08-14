@@ -3,3 +3,4 @@ model_weights/
 *.zip
 /__pycache__/
 *.pyc
+*.tar
