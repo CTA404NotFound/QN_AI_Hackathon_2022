@@ -16,9 +16,6 @@ RUN pip install gdown
 #     apt-get clean;
 
 # STEP 7: Download file weight
-
-RUN gdown "https://drive.google.com/u/0/uc?id=1Z673t-kcZM8YwC0v14zLx80W1UP-DHIe&export=download"
-
 RUN gdown "https://drive.google.com/u/0/uc?id=1Z673t-kcZM8YwC0v14zLx80W1UP-DHIe&export=download"
 
 #Download file stop word
