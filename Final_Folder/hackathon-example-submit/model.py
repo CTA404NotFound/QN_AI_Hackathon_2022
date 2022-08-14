@@ -11,10 +11,6 @@ class PhoBertSentimentClassification(nn.Module):
 
     def __init__(self):
         super(PhoBertSentimentClassification, self).__init__()
-
-        self.bert = AutoModel.from_pretrained(BERT_NAME)
-        self.dropout = nn.Dropout(p = 0.1)
-
         self.bert = AutoModel.from_pretrained(BERT_NAME)
         self.dropout = nn.Dropout(p = 0.1)
 
