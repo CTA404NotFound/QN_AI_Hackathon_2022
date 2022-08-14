@@ -16,9 +16,6 @@ from nltk.stem.lancaster import LancasterStemmer
 
 from underthesea import word_tokenize
 from config import VN_STOP_WORD, VNCORENLP
-
-from underthesea import word_tokenize
-from config import VN_STOP_WORD
 # from config import VN_STOP_WORD, VNCORENLP
 
 
