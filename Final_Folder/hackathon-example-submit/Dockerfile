@@ -11,7 +11,7 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 RUN pip install gdown
 
 # STEP 7: Download file weight
-RUN gdown "https://drive.google.com/file/d/1e7G43tIwy-XWHxyoJ3-t6g6joCCX610C/view?usp=sharing"
+RUN gdown "https://drive.google.com/file/d/1Z673t-kcZM8YwC0v14zLx80W1UP-DHIe/view?usp=sharing"
 #Download file stop word
 RUN gdown "https://drive.google.com/file/d/1nbKTtYPgHCwCIPObsuyyaYgH6a0JJ8pZ/view?usp=sharing"
 #Download file vncorenlp folder
