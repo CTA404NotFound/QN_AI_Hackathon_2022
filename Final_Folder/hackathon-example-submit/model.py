@@ -12,7 +12,8 @@ class PhoBertSentimentClassification(nn.Module):
     def __init__(self):
         super(PhoBertSentimentClassification, self).__init__()
         self.bert = AutoModel.from_pretrained(BERT_NAME)
-        self.dropout = nn.Dropout(p = 0.3)
+        self.dropout = nn.Dropout(p = 0.1)
+
         # self.n_labels = n_labels
         self.fc = nn.Linear(self.bert.config.hidden_size, 30)
         nn.init.normal_(self.fc.weight, std = 0.02)
@@ -44,5 +45,5 @@ class ReviewClassifierModel(nn.Module):
     
     def predict(self, input_ids, input_mask):
         cls_output = self.model(input_ids, input_mask)
-        output_one_hot_vector = torch.where(torch.sigmoid(cls_output) > 0.99, 1., 0.)
-        return output_one_hot_vector
+        # output_one_hot_vector = torch.where(torch.sigmoid(cls_output) > 0.99, 1., 0.)
+        return cls_output
