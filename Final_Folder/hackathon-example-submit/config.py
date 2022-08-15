@@ -7,3 +7,4 @@ MODEL_FILE_NAME ="last_step.pth"
 DEVICE="cpu"
 #PACKAGES
 VN_STOP_WORD = "vietnamese-stopwords-dash.txt"
+VNCORENLP = "vncorenlp/VnCoreNLP-1.1.1.jar"
