@@ -96,7 +96,7 @@ def format_label(output_one_hot_tensor):
         List: List of sentimental polarity scores of aspects following the organizer's format
     """
     lbl_real = []
-    lbl_prefix = torch.where(torch.sigmoid(output_one_hot_tensor) > 0.97, torch.sigmoid(output_one_hot_tensor), 0.)
+    lbl_prefix = torch.where(torch.sigmoid(output_one_hot_tensor) > 0.99, torch.sigmoid(output_one_hot_tensor), 0.)
     split_tensor = list(torch.tensor_split(lbl_prefix[0], 6))
     for i in range(len(split_tensor)):
         if(torch.count_nonzero(split_tensor[i]).item()==0):
