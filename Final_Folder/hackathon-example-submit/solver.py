@@ -1,4 +1,4 @@
-from transformers import AutoModel
+# from transformers import AutoModel
 from transformers import AutoTokenizer, AutoConfig
 from processing import encode_review, format_label
 from model import ReviewClassifierModel

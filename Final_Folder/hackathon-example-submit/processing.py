@@ -1,7 +1,6 @@
 import torch
 import re
 import demoji
-
 from base64 import encode
 # import encodings
 from multiprocessing.spawn import _main
@@ -9,7 +8,6 @@ from unittest.main import main
 # from transformers import AutoTokenizer
 # from tqdm import tqdm
 import pandas as pd
-import re
 from nltk.stem.porter import PorterStemmer
 # from nltk.stem.lancaster import LancasterStemmer
 from vncorenlp import VnCoreNLP
