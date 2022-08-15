@@ -54,3 +54,4 @@ def solve(text, device, BERT_NAME):
 
 #         output = self.classify_model.predict(x_padding, attention_masks)
 #         return output
+#ok
