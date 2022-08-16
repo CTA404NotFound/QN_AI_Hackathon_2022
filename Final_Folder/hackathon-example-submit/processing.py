@@ -2,17 +2,17 @@ import torch
 import re
 import demoji
 from base64 import encode
-# import encodings
 from multiprocessing.spawn import _main
 from unittest.main import main
-# from transformers import AutoTokenizer
-# from tqdm import tqdm
 import pandas as pd
 from nltk.stem.porter import PorterStemmer
 # from nltk.stem.lancaster import LancasterStemmer
 from vncorenlp import VnCoreNLP
-# from underthesea import word_tokenize
 from config import VN_STOP_WORD, VNCORENLP
+# import encodings
+# from transformers import AutoTokenizer
+# from tqdm import tqdm
+# from underthesea import word_tokenize
 
 
 stopwords_file = open(VN_STOP_WORD, "r", encoding = "utf-8")
@@ -59,10 +59,8 @@ def preprocessing(text):
     text = text.lower() 
     text = re.sub(r'[^\w\s]', '', text)
     text = re.sub(r'(ks)', 'khách_sạn', text)
-    # text = sc1(text)
     text = word_tokenizer(text)
     text = remove_stopwords(text)
-    # # print(text)
     text = " ".join(text[0])
 
     return text
