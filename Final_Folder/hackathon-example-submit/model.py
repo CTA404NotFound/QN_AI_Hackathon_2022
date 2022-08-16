@@ -29,21 +29,35 @@ class PhoBertSentimentClassification(nn.Module):
         x = self.fc(x)
         return x
 
-class ReviewClassifierModel(nn.Module):
-
-    def __init__(self, model_path):
-        super(ReviewClassifierModel, self).__init__()
-        self.model = PhoBertSentimentClassification()
-        self.setup(model_path)
-
-    def setup(self, model_path):
-        self.model.load_state_dict(
+model_path = MODEL_FILE_NAME
+model = PhoBertSentimentClassification()
+model.load_state_dict(
             torch.load(model_path,
                        map_location=torch.device('cpu')),
             strict=False)
-        self.model.to(torch.device(DEVICE))
+model.to(torch.device(DEVICE))
+
+def predict(input_ids, input_mask):
+    global model
+    cls_output = model(input_ids, input_mask)
+    # output_one_hot_vector = torch.where(torch.sigmoid(cls_output) > 0.99, 1., 0.)
+    return cls_output
+
+# class ReviewClassifierModel(nn.Module):
+
+#     def __init__(self, model_path):
+#         super(ReviewClassifierModel, self).__init__()
+#         self.model = PhoBertSentimentClassification()
+#         self.setup(model_path)
+
+#     def setup(self, model_path):
+#         self.model.load_state_dict(
+#             torch.load(model_path,
+#                        map_location=torch.device('cpu')),
+#             strict=False)
+#         self.model.to(torch.device(DEVICE))
     
-    def predict(self, input_ids, input_mask):
-        cls_output = self.model(input_ids, input_mask)
-        # output_one_hot_vector = torch.where(torch.sigmoid(cls_output) > 0.99, 1., 0.)
-        return cls_output
+#     def predict(self, input_ids, input_mask):
+#         cls_output = self.model(input_ids, input_mask)
+#         # output_one_hot_vector = torch.where(torch.sigmoid(cls_output) > 0.99, 1., 0.)
+#         return cls_output

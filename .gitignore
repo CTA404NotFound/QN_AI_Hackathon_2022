@@ -4,3 +4,5 @@ model_weights/
 /__pycache__/
 *.pyc
 *.tar
+hack/
+*.pth
