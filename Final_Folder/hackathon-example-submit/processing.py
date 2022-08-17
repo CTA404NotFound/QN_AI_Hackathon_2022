@@ -1,18 +1,17 @@
 import torch
 import re
 import demoji
-from base64 import encode
-from multiprocessing.spawn import _main
-from unittest.main import main
-import pandas as pd
-from nltk.stem.porter import PorterStemmer
-# from nltk.stem.lancaster import LancasterStemmer
 from vncorenlp import VnCoreNLP
 from config import VN_STOP_WORD, VNCORENLP
+from nltk.stem.porter import PorterStemmer
+# from base64 import encode
+# from multiprocessing.spawn import _main
+# from unittest.main import main
+# import pandas as pd
+# from nltk.stem.lancaster import LancasterStemmer
 # import encodings
 # from transformers import AutoTokenizer
 # from tqdm import tqdm
-# from underthesea import word_tokenize
 
 
 stopwords_file = open(VN_STOP_WORD, "r", encoding = "utf-8")
@@ -35,23 +34,15 @@ def handle_emoji(string):
 
 def remove_stopwords(text):
     text = [word for word in text if word not in stopwords_list]
-    # new_text = " ".join(text)
     return text
 
 def stemming(text):
     text = [stemmer.stem(word) for word in text]
-    # new_text = " ".join(text)
     return text
 
 def word_tokenizer(text):
     tokens = vnp.tokenize(text)
     return tokens
-
-#Underthesea segment
-# def word_tokenizer(text):
-#     text = text.replace(".", "")
-#     tokens = word_tokenize(text)
-#     return tokens
 
 def preprocessing(text):
     text = remove_url(text)
@@ -77,7 +68,7 @@ def encode_review(text, tokenizer, device, max_seq_length=256):
     
     input_ids = encodings["input_ids"].to(device)
     attention_mask = encodings["attention_mask"].to(device)
-    return torch.tensor(input_ids), torch.tensor(attention_mask)
+    return input_ids, attention_mask
 
 def format_label(output_one_hot_tensor):
     """Convert the model's output vector into standard vector format following the organizer's ones
@@ -89,7 +80,7 @@ def format_label(output_one_hot_tensor):
         List: List of sentimental polarity scores of aspects following the organizer's format
     """
     lbl_real = []
-    lbl_prefix = torch.where(torch.sigmoid(output_one_hot_tensor) > 0.99, torch.sigmoid(output_one_hot_tensor), 0.)
+    lbl_prefix = torch.where(torch.sigmoid(output_one_hot_tensor) > 0.97, torch.sigmoid(output_one_hot_tensor), 0.)
     split_tensor = list(torch.tensor_split(lbl_prefix[0], 6))
     for i in range(len(split_tensor)):
         if(torch.count_nonzero(split_tensor[i]).item()==0):

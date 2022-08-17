@@ -2,7 +2,7 @@
 NUM_LABEL=30
 MAX_LEN=256
 BERT_NAME="phobert-base"
-MODEL_FILE_NAME ="last_step.pth"
+MODEL_FOLDER ="Weight_Model"
 #HARDWARE
 DEVICE="cpu"
 #PACKAGES

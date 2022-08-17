@@ -15,14 +15,12 @@ RUN apt-get update && \
     apt-get install -y openjdk-11-jre-headless && \
     apt-get clean;
 
-# STEP 7: Download file weight
-RUN gdown "https://drive.google.com/u/0/uc?id=1Z673t-kcZM8YwC0v14zLx80W1UP-DHIe&export=download"
-
 #Download file stop word
 RUN gdown "https://drive.google.com/u/6/uc?id=1nbKTtYPgHCwCIPObsuyyaYgH6a0JJ8pZ&export=download"
 
-# #Download file vncorenlp
-# RUN gdown "https://drive.google.com/u/1/uc?id=1eGIHTOv8MX1Wd8sZ3oEZX3gmjZMfW5eD&export=download"
+# STEP 7: Download file weight
+RUN mkdir -p /cta404notfound/Weight_Model
+RUN cd /Weight_Model gdown "https://drive.google.com/uc?export=download&id=1-8jLQR4RTUn7qNnMRsgVKAC-Bk07K9xR" gdown "https://drive.google.com/uc?export=download&id=1NIsxMCbEHT2yD6Be4LxXKYOtOP3aByIl"
 
 # #install vncorenlp folder
 # RUN yum install unzip
