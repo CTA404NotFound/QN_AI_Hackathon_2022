@@ -50,19 +50,22 @@ def eval_metrics(aspect_idx, prediction, label):
     Returns:
         F1 score and R2 score of an aspect
     """
-    numerator, denominator = [], []
+    numerator = []
+    zero_diff_count = 0
     format_pred, format_label = generate_format_array(aspect_idx, prediction, label)
     if is_different_vectors(format_pred, format_label):
         aspect_r2_score = 1
     else:
         num_examples = len(prediction) # Number of predictions equals to number of labels
         for i in range(num_examples):
-            numerator.append((prediction[i][aspect_idx] - label[i][aspect_idx])**2)
-            denominator.append(16)
-        aspect_r2_score = 1 - float(sum(numerator) / sum(denominator))
+            if prediction[i][aspect_idx] != 0 and label[i][aspect_idx] != 0:
+                numerator.append((prediction[i][aspect_idx] - label[i][aspect_idx])**2)
+                zero_diff_count += 1
+        denominator = zero_diff_count * 16
+        aspect_r2_score = 1 - float(sum(numerator) / denominator)
     
-    aspect_precision = precision_score(format_pred, format_label)
-    aspect_recall = recall_score(format_pred, format_label)
-    aspect_f1_score = f1_score(format_pred, format_label)
+    aspect_precision = precision_score(format_label, format_pred)
+    aspect_recall = recall_score(format_label, format_pred)
+    aspect_f1_score = f1_score(format_label, format_pred)
     
     return aspect_precision, aspect_recall, aspect_f1_score, aspect_r2_score
