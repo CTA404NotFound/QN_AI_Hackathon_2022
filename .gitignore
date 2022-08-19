@@ -6,3 +6,4 @@ model_weights/
 *.tar
 hack/
 *.pth
+*.bin

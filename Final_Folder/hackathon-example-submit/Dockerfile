@@ -20,8 +20,9 @@ RUN gdown "https://drive.google.com/u/6/uc?id=1nbKTtYPgHCwCIPObsuyyaYgH6a0JJ8pZ&
 
 # STEP 7: Download file weight
 RUN mkdir -p /cta404notfound/Weight_Model
-RUN cd /Weight_Model gdown "https://drive.google.com/uc?export=download&id=1-8jLQR4RTUn7qNnMRsgVKAC-Bk07K9xR" gdown "https://drive.google.com/uc?export=download&id=1NIsxMCbEHT2yD6Be4LxXKYOtOP3aByIl"
+RUN cd /cta404notfound/Weight_Model && gdown "https://drive.google.com/uc?export=download&id=1-8jLQR4RTUn7qNnMRsgVKAC-Bk07K9xR" && gdown "https://drive.google.com/uc?export=download&id=1NIsxMCbEHT2yD6Be4LxXKYOtOP3aByIl"
 
+# ADD Weight_Model /cta404notfound
 # #install vncorenlp folder
 # RUN yum install unzip
 # ADD vncorenlp.zip /cta404notfound/
