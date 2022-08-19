@@ -7,3 +7,4 @@ model_weights/
 hack/
 *.pth
 *.bin
+Var.py
