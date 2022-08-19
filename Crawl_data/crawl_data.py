@@ -77,8 +77,8 @@ def scroll_end_page(driver):
     sleep(random.randint(12,15))
 
 
-number_rs = driver.find_element(By.XPATH,"/html/body/div[2]/section/div/div[2]/div/div/div/div/div[2]/div[3]/div/div/div/div/span")
-number_rs = int(number_rs.text)
+# number_rs = driver.find_element(By.XPATH,"/html/body/div[2]/section/div/div[2]/div/div/div/div/div[2]/div[3]/div/div/div/div/span")
+# number_rs = int(number_rs.text)
 
 scroll_end_page(driver)
 
