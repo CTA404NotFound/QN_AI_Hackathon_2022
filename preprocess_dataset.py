@@ -2,16 +2,14 @@ from base64 import encode
 import encodings
 from multiprocessing.spawn import _main
 from unittest.main import main
-from transformers import AutoTokenizer, T5ForConditionalGeneration
 from tqdm import tqdm
 import pandas as pd
 import re
 import demoji
 from nltk.stem.porter import PorterStemmer
-from nltk.stem.lancaster import LancasterStemmer
 from vncorenlp import VnCoreNLP
 
-dataset = './dataset/Relabel_data_AIHackathon/data_final_pro_2_v2.csv'
+dataset = './dataset/Relabel_data_AIHackathon/data_final_pro_2.csv'
 df = pd.read_csv(dataset)
 stop_word = []
 txt_file = open("./dataset/vietnamese-stopwords-dash.txt", "r", encoding = "utf-8")
@@ -89,7 +87,7 @@ def process():
     tqdm.pandas()
     df1['clean_review'] = df1['Review'].progress_map(preprocessing)
     process_labels_csv(df1)
-    df1.to_csv('./dataset/Relabel_data_AIHackathon/data_final_v2.csv', encoding='utf-8-sig')
+    df1.to_csv('./dataset/Relabel_data_AIHackathon/clean_data_final_pro_2.csv', encoding='utf-8-sig')
 
 if __name__ == "__main__":
     process()
