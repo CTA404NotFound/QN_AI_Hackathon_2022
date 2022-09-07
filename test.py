@@ -18,21 +18,6 @@ prediction = [[4,2,0,2,2,5],
 
             [4,2,1,2,4,2]]
 
-
-# prediction = [[1, 0, 3, 4, 2, 0], [0, 2, 2, 5, 1, 0]]
-# target = [[1, 1, 3, 5, 3, 1], [0, 0, 3, 4, 0, 0]]
-# num_examples = len(prediction)
-# print(f"Num examples: {num_examples}")
-# aspect_idx = 0
-# count = 0
-# numerator = []
-# for i in range(num_examples):
-#     numerator.append((prediction[i][aspect_idx] - target[i][aspect_idx])**2)
-#     if prediction[i][aspect_idx] != 0 and target[i][aspect_idx] != 0:
-#         count += 1
-
-# print(numerator)
-
 precisions, recalls, f1_scores, r2_scores = [], [], [], []
 
 for i in range(6):

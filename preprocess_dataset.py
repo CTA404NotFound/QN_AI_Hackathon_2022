@@ -1,14 +1,14 @@
 from base64 import encode
-import encodings
-from multiprocessing.spawn import _main
-from unittest.main import main
+# import encodings
+# from multiprocessing.spawn import _main
+# from unittest.main import main
 from tqdm import tqdm
 import pandas as pd
 import re
 import demoji
-import py_vncorenlp
+# import py_vncorenlp
 from nltk.stem.porter import PorterStemmer
-# from vncorenlp import VnCoreNLP
+from vncorenlp import VnCoreNLP
 
 dataset = './dataset/data_final_problem2.csv'
 df = pd.read_csv(dataset)
@@ -16,10 +16,10 @@ stop_word = []
 txt_file = open("./dataset/vietnamese-stopwords-dash.txt", "r", encoding = "utf-8")
 file_content = txt_file.read()
 content_list = file_content.split("\n")
-# stemmer = PorterStemmer()
-py_vncorenlp.download_model(save_dir='./vncorenlp/')
-rdrsegmenter = py_vncorenlp.VnCoreNLP(annotators=["wseg"], save_dir='./vncorenlp/')
-# vnp = VnCoreNLP("./vncorenlp/VnCoreNLP-1.1.1.jar",annotators="wseg")
+stemmer = PorterStemmer()
+# py_vncorenlp.download_model(save_dir='./vncorenlp/')
+# rdrsegmenter = py_vncorenlp.VnCoreNLP(annotators=["wseg"], save_dir='./vncorenlp/')
+vnp = VnCoreNLP("./vncorenlp/VnCoreNLP-1.1.1.jar",annotators="wseg")
 
 SENTI_DICT = {
     1: "very_negative",
@@ -52,21 +52,22 @@ def stemming(text):
     return text
 
 def word_tokenizer(text):
-    tokens = rdrsegmenter.word_segmenter(text)
+    # tokens = rdrsegmenter.word_segmenter(text)
+    tokens = vnp.tokenize(text)
     tokens = [t for ts in tokens for t in ts]
     word_segmented_text = " ".join(tokens)
     return word_segmented_text
 
 def preprocessing(text):
-    # text = remove_url(text)
-    # text = handle_emoji(text)
-    # text = text.lower() 
-    # text = re.sub(r'[^\w\s]', '', text)
+    text = remove_url(text)
+    text = handle_emoji(text)
+    text = text.lower() 
+    text = re.sub(r'[^\w\s]', '', text)
     text = re.sub(r'(ks)', 'khách_sạn', text)
     text = re.sub(r'(ko)', 'không', text)
     text = word_tokenizer(text)
-    # text = remove_stopwords(text)
-    # text = " ".join(text[0])
+    text = remove_stopwords(text)
+    text = " ".join(text[0])
 
     return text
 
@@ -94,8 +95,5 @@ def process():
     df1.to_csv('./dataset/clean_data_final_problem2.csv', encoding='utf-8-sig')
 
 if __name__ == "__main__":
-    sample = "Đại học Công nghệ thông tin"
-    processed = word_tokenizer(sample)
-    print(processed)
-    # process()
-    # print("Everything is done!")
+    process()
+    print("Everything is done!")
