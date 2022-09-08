@@ -1,3 +1,0 @@
-// Format <globPattern>:[keyRegex]
-.env:.*_KEY,.*_token,.*PASS
-id_rsa:*
