@@ -9,5 +9,3 @@ hack/
 *.bin
 Var.py
 chromedriver/
-Crawl_data/
-hackathon-example-submit/
