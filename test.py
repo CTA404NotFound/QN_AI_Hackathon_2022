@@ -1,35 +1,37 @@
-# from transformers import AutoModel
-# import torch
-# import torch.nn as nn
-# import time
-# class SentimentClassifier(nn.Module):
-#     def __init__(self, n_classes):
-#         super(SentimentClassifier, self).__init__()
-#         self.bert = AutoModel.from_pretrained("vinai/phobert-base")
-#         # self.bert = model.load_state_dict(torch.load(f'/content/content/phobert_fold10.pth'))
-#         self.drop = nn.Dropout(p=0.3)
-#         self.fc = nn.Linear(self.bert.config.hidden_size, 30)
-#         nn.init.normal_(self.fc.weight, std=0.02)
-#         nn.init.normal_(self.fc.bias, 0)
+from eval import *
 
-#     def forward(self, input_ids, attention_mask):
-#         last_hidden_state, output = self.bert(
-#             input_ids=input_ids,
-#             attention_mask=attention_mask,
-#             return_dict=False # Dropout will errors if without this
-#         )
+target = [[5,3,1,0,2,4],
 
-#         x = self.drop(output)
-#         x = self.fc(x)
-#         return x
-# device = torch.device('cpu')
-# model = SentimentClassifier(n_classes=7)
-# model.to(device)
-# model.load_state_dict(torch.load(f'model_weights\last_step.pth',map_location=torch.device('cpu')))
-import numpy as np
+        [5,2,0,0,4,0],
 
-lista = [1, 0, 1, 1, 0.67, 0]
-listb = [1, 1, 0.96875, 0.9375, 0.9375, 1]
+        [2,1,5,4,4,1],
 
-res = sum([a*b for a,b in zip(lista,listb)])
+        [0,3,5,2,5,5]]
+
+
+
+prediction = [[4,2,0,2,2,5],
+
+            [5,3,3,1,1,1],
+
+            [3,0,5,3,2,1],
+
+            [4,2,1,2,4,2]]
+
+precisions, recalls, f1_scores, r2_scores = [], [], [], []
+
+for i in range(6):
+    prec, rec, f1, r2 = eval_metrics(i, prediction, target)
+    precisions.append(prec)
+    recalls.append(rec)
+    f1_scores.append(f1)
+    r2_scores.append(r2)
+
+print(f"Precisions: {precisions}")
+print(f"Recall: {recalls}")
+print(f"F1 score: {f1_scores}")
+print(f"R2 score: {r2_scores}")
+
+
+res = sum([a*b for a,b in zip(f1_scores,r2_scores)])
 print(1/6 * res)

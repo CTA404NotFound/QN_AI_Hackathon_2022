@@ -14,9 +14,9 @@ from nltk.stem.porter import PorterStemmer
 # from tqdm import tqdm
 
 
-stopwords_file = open(VN_STOP_WORD, "r", encoding = "utf-8")
-stopwords_content = stopwords_file.read()
-stopwords_list = stopwords_content.split("\n")
+# stopwords_file = open(VN_STOP_WORD, "r", encoding = "utf-8")
+# stopwords_content = stopwords_file.read()
+# stopwords_list = stopwords_content.split("\n")
 stemmer = PorterStemmer()
 vnp = VnCoreNLP(VNCORENLP,annotators="wseg")
 
@@ -51,7 +51,7 @@ def preprocessing(text):
     text = re.sub(r'[^\w\s]', '', text)
     text = re.sub(r'(ks)', 'khách_sạn', text)
     text = word_tokenizer(text)
-    text = remove_stopwords(text)
+    # text = remove_stopwords(text)
     text = " ".join(text[0])
 
     return text

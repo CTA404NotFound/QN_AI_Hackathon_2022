@@ -142,7 +142,8 @@ if __name__=="__main__":
     sample_text = "Bệnh_viện rất đẹp, nơi khám chữa bệnh uy_tín và chất_lượng"
     outputs = inference(sample_text, model, tokenizer, device)
     output_one_hot_vector, label = outputs
-    print(output_one_hot_vector)
+    standard_output = convert_output_format(output_one_hot_vector)
+    print(standard_output)
 
     # print(labels[0])
     # print(type(labels[0]))
