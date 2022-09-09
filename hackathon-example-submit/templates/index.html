@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="/css/styles.css"> -->
+    <title>CTA404NotFound</title>
+    <style>
+        .mycustombtn{
+            text-align: center !important;
+            margin: auto;
+                    }
+
+    </style>  
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <style>
+            @-webkit-keyframes fall {
+                0% {
+                    opacity: 0.9;
+                    top: 0
+                }
+                100% {
+                    opacity: 0.2;
+                    top: 100%
+                }
+            }
+
+            @keyframes fall {
+                0% {
+                    opacity: 0.9;
+                    top: 0
+                }
+                100% {
+                    opacity: 0.2;
+                    top: 100%
+                }
+            }
+
+            @-webkit-keyframes blow-soft-left {
+                0% {
+                    margin-left: 0
+                }
+                100% {
+                    margin-left: -50%
+                }
+            }
+
+            @keyframes blow-soft-left {
+                0% {
+                    margin-left: 0
+                }
+                100% {
+                    margin-left: -50%
+                }
+            }
+
+            @-webkit-keyframes blow-medium-left {
+                0% {
+                    margin-left: 0
+                }
+                100% {
+                    margin-left: -100%
+                }
+            }
+
+            @keyframes blow-medium-left {
+                0% {
+                    margin-left: 0
+                }
+                100% {
+                    margin-left: -100%
+                }
+            }
+
+            @-webkit-keyframes blow-soft-right {
+                0% {
+                    margin-left: 0
+                }
+                100% {
+                    margin-left: 50%
+                }
+            }
+
+            @keyframes blow-soft-right {
+                0% {
+                    margin-left: 0
+                }
+                100% {
+                    margin-left: 50%
+                }
+            }
+
+            @-webkit-keyframes blow-medium-right {
+                0% {
+                    margin-left: 0
+                }
+                100% {
+                    margin-left: 100%
+                }
+            }
+
+            @keyframes blow-medium-right {
+                0% {
+                    margin-left: 0
+                }
+                100% {
+                    margin-left: 100%
+                }
+            }
+
+            @-webkit-keyframes sway-0 {
+                0% {
+                    -webkit-transform: rotate(-5deg)
+                }
+                40% {
+                    -webkit-transform: rotate(28deg)
+                }
+                100% {
+                    -webkit-transform: rotate(3deg)
+                }
+            }
+
+            @keyframes sway-0 {
+                0% {
+                    -ms-transform: rotate(-5deg);
+                    transform: rotate(-5deg)
+                }
+                40% {
+                    -ms-transform: rotate(28deg);
+                    transform: rotate(28deg)
+                }
+                100% {
+                    -ms-transform: rotate(3deg);
+                    transform: rotate(3deg)
+                }
+            }
+
+            @-webkit-keyframes sway-1 {
+                0% {
+                    -webkit-transform: rotate(10deg)
+                }
+                40% {
+                    -webkit-transform: rotate(43deg)
+                }
+                100% {
+                    -webkit-transform: rotate(15deg)
+                }
+            }
+
+            @keyframes sway-1 {
+                0% {
+                    -ms-transform: rotate(10deg);
+                    transform: rotate(10deg)
+                }
+                40% {
+                    -ms-transform: rotate(43deg);
+                    transform: rotate(43deg)
+                }
+                100% {
+                    -ms-transform: rotate(15deg);
+                    transform: rotate(15deg)
+                }
+            }
+
+            @-webkit-keyframes sway-2 {
+                0% {
+                    -webkit-transform: rotate(15deg)
+                }
+                40% {
+                    -webkit-transform: rotate(56deg)
+                }
+                100% {
+                    -webkit-transform: rotate(22deg)
+                }
+            }
+
+            @keyframes sway-2 {
+                0% {
+                    -ms-transform: rotate(15deg);
+                    transform: rotate(15deg)
+                }
+                40% {
+                    -ms-transform: rotate(56deg);
+                    transform: rotate(56deg)
+                }
+                100% {
+                    -ms-transform: rotate(22deg);
+                    transform: rotate(22deg)
+                }
+            }
+
+            @-webkit-keyframes sway-3 {
+                0% {
+                    -webkit-transform: rotate(25deg)
+                }
+                40% {
+                    -webkit-transform: rotate(74deg)
+                }
+                100% {
+                    -webkit-transform: rotate(37deg)
+                }
+            }
+
+            @keyframes sway-3 {
+                0% {
+                    -ms-transform: rotate(25deg);
+                    transform: rotate(25deg)
+                }
+                40% {
+                    -ms-transform: rotate(74deg);
+                    transform: rotate(74deg)
+                }
+                100% {
+                    -ms-transform: rotate(37deg);
+                    transform: rotate(37deg)
+                }
+            }
+
+            @-webkit-keyframes sway-4 {
+                0% {
+                    -webkit-transform: rotate(40deg)
+                }
+                40% {
+                    -webkit-transform: rotate(68deg)
+                }
+                100% {
+                    -webkit-transform: rotate(25deg)
+                }
+            }
+
+            @keyframes sway-4 {
+                0% {
+                    -ms-transform: rotate(40deg);
+                    transform: rotate(40deg)
+                }
+                40% {
+                    -ms-transform: rotate(68deg);
+                    transform: rotate(68deg)
+                }
+                100% {
+                    -ms-transform: rotate(25deg);
+                    transform: rotate(25deg)
+                }
+            }
+
+            @-webkit-keyframes sway-5 {
+                0% {
+                    -webkit-transform: rotate(50deg)
+                }
+                40% {
+                    -webkit-transform: rotate(78deg)
+                }
+                100% {
+                    -webkit-transform: rotate(40deg)
+                }
+            }
+
+            @keyframes sway-5 {
+                0% {
+                    -ms-transform: rotate(50deg);
+                    transform: rotate(50deg)
+                }
+                40% {
+                    -ms-transform: rotate(78deg);
+                    transform: rotate(78deg)
+                }
+                100% {
+                    -ms-transform: rotate(40deg);
+                    transform: rotate(40deg)
+                }
+            }
+
+            @-webkit-keyframes sway-6 {
+                0% {
+                    -webkit-transform: rotate(65deg)
+                }
+                40% {
+                    -webkit-transform: rotate(92deg)
+                }
+                100% {
+                    -webkit-transform: rotate(58deg)
+                }
+            }
+
+            @keyframes sway-6 {
+                0% {
+                    -ms-transform: rotate(65deg);
+                    transform: rotate(65deg)
+                }
+                40% {
+                    -ms-transform: rotate(92deg);
+                    transform: rotate(92deg)
+                }
+                100% {
+                    -ms-transform: rotate(58deg);
+                    transform: rotate(58deg)
+                }
+            }
+
+            @-webkit-keyframes sway-7 {
+                0% {
+                    -webkit-transform: rotate(72deg)
+                }
+                40% {
+                    -webkit-transform: rotate(118deg)
+                }
+                100% {
+                    -webkit-transform: rotate(68deg)
+                }
+            }
+
+            @keyframes sway-7 {
+                0% {
+                    -ms-transform: rotate(72deg);
+                    transform: rotate(72deg)
+                }
+                40% {
+                    -ms-transform: rotate(118deg);
+                    transform: rotate(118deg)
+                }
+                100% {
+                    -ms-transform: rotate(68deg);
+                    transform: rotate(68deg)
+                }
+            }
+
+            @-webkit-keyframes sway-8 {
+                0% {
+                    -webkit-transform: rotate(94deg)
+                }
+                40% {
+                    -webkit-transform: rotate(136deg)
+                }
+                100% {
+                    -webkit-transform: rotate(82deg)
+                }
+            }
+
+            @keyframes sway-8 {
+                0% {
+                    -ms-transform: rotate(94deg);
+                    transform: rotate(94deg)
+                }
+                40% {
+                    -ms-transform: rotate(136deg);
+                    transform: rotate(136deg)
+                }
+                100% {
+                    -ms-transform: rotate(82deg);
+                    transform: rotate(82deg)
+                }
+            }
+
+            .sakura {
+                background: -webkit-linear-gradient(120deg, rgba(255, 183, 197, 0.9), rgba(255, 197, 208, 0.9));
+                background: linear-gradient(120deg, rgba(255, 183, 197, 0.9), rgba(255, 197, 208, 0.9));
+                pointer-events: none;
+                position: absolute
+            }
+        </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="http://127.0.0.1:8000/">ReviewEvaluation</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    <h1 style="text-align: center;">Welcome to Review Evaluation (-_-)</h1>
+    <br>
+    <div class="content", style="width: 1000px ;display: block;margin-left: auto;margin-right: auto;">
+        <form action="/", method="POST" >
+            <textarea class="form-control" aria-label="With textarea" name="review" rows="3" style="margin-bottom: 10px;"></textarea>
+            <!-- <input type="text" name="review" value="" style="width:500px;margin-bottom: 10px;"> -->
+            <input type="submit" value="Submit" style="background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);margin: auto;display: block;">
+        </form>
+        <br>
+        <div class="output">
+          <h2 style="text-align: center;">The rating for this comment is: </h2>
+        </div>
+    </div>
+    <h5 style="text-align: center;">{{review_sentence | safe}}</p>
+    <br>
+    <h3 style="text-align:center; "> Result Table</h3>
+    <div class="input" style="padding:10px ;overflow-x:scroll;">
+      {{ data | safe }}
+    </div>
+    <footer class="bg-light text-center text-lg-start" style="position: fixed;bottom: 0;width: 100%;">
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2022 Copyright:
+        <a class="text-dark" href="https://github.com/Cyouisme/" style="font-weight: bold;">ChungHB</a> <span style="font-weight: bold;"> - KhoaPD - LeBaViet</span><span> - AICamp8</span>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <script type="text/javascript">
+      // Plugin code
+      (function ($) {
+          /** Polyfills and prerequisites **/
+
+          // requestAnimationFrame Polyfill
+          var lastTime    = 0;
+          var vendors     = ['webkit', 'o', 'ms', 'moz', ''];
+          var vendorCount = vendors.length;
+
+          for (var x = 0; x < vendorCount && ! window.requestAnimationFrame; ++x) {
+              window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+              window.cancelAnimationFrame  = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
+          }
+
+          if ( ! window.requestAnimationFrame) {
+              window.requestAnimationFrame = function(callback) {
+                  var currTime   = new Date().getTime();
+                  var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+
+                  var id   = window.setTimeout(function() { callback(currTime + timeToCall); }, timeToCall);
+                  lastTime = currTime + timeToCall;
+
+                  return id;
+              };
+          }
+
+          if ( ! window.cancelAnimationFrame) {
+              window.cancelAnimationFrame = function(id) {
+                  clearTimeout(id);
+              };
+          }
+
+          // Prefixed event check
+          $.fn.prefixedEvent = function(type, callback) {
+              for (var x = 0; x < vendorCount; ++x) {
+                  if ( ! vendors[x]) {
+                      type = type.toLowerCase();
+                  }
+
+                  el = (this instanceof jQuery ? this[0] : this);
+                  el.addEventListener(vendors[x] + type, callback, false);
+              }
+
+              return this;
+          };
+
+          // Test if element is in viewport
+          function elementInViewport(el) {
+
+              if (el instanceof jQuery) {
+                  el = el[0];
+              }
+
+              var rect = el.getBoundingClientRect();
+
+              return (
+                  rect.top >= 0 &&
+                      rect.left >= 0 &&
+                      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                  );
+          }
+
+          // Random array element
+          function randomArrayElem(arr) {
+              return arr[Math.floor(Math.random() * arr.length)];
+          }
+
+          // Random integer
+          function randomInt(min, max) {
+              return Math.floor(Math.random() * (max - min + 1)) + min;
+          }
+
+          /** Actual plugin code **/
+          $.fn.sakura = function (event, options) {
+
+              // Target element
+              var target = this.selector == "" ? $('body') : this;
+
+              // Defaults for the option object, which gets extended below
+              var defaults = {
+                  blowAnimations: ['blow-soft-left', 'blow-medium-left', 'blow-soft-right', 'blow-medium-right'],
+                  className: 'sakura',
+                  fallSpeed: 1,
+                  maxSize: 14,
+                  minSize: 10,
+                  newOn: 300,
+                  swayAnimations: ['sway-0', 'sway-1', 'sway-2', 'sway-3', 'sway-4', 'sway-5', 'sway-6', 'sway-7', 'sway-8']
+              };
+
+              var options = $.extend({}, defaults, options);
+
+              // Default or start event
+              if (typeof event === 'undefined' || event === 'start') {
+
+                  // Set the overflow-x CSS property on the target element to prevent horizontal scrollbars
+                  target.css({ 'overflow-x': 'hidden' });
+
+                  // Function that inserts new petals into the document
+                  var petalCreator = function () {
+                      if (target.data('sakura-anim-id')) {
+                          setTimeout(function () {
+                              requestAnimationFrame(petalCreator);
+                          }, options.newOn);
+                      }
+
+                      // Get one random animation of each type and randomize fall time of the petals
+                      var blowAnimation = randomArrayElem(options.blowAnimations);
+                      var swayAnimation = randomArrayElem(options.swayAnimations);
+                      var fallTime = ((document.documentElement.clientHeight * 0.007) + Math.round(Math.random() * 5)) * options.fallSpeed;
+
+                      // Build animation
+                      var animations =
+                          'fall ' + fallTime + 's linear 0s 1' + ', ' +
+                              blowAnimation + ' ' + (((fallTime > 30 ? fallTime : 30) - 20) + randomInt(0, 20)) + 's linear 0s infinite' + ', ' +
+                              swayAnimation + ' ' + randomInt(2, 4) + 's linear 0s infinite';
+
+                      // Create petal and randomize size
+                      var petal  = $('<div class="' + options.className + '" />');
+                      var height = randomInt(options.minSize, options.maxSize);
+                      var width  = height - Math.floor(randomInt(0, options.minSize) / 3);
+
+                      // Apply Event Listener to remove petals that reach the bottom of the page
+                      petal.prefixedEvent('AnimationEnd', function () {
+                          if ( ! elementInViewport(this)) {
+                              $(this).remove();
+                          }
+                      })
+                      // Apply Event Listener to remove petals that finish their horizontal float animation
+                      .prefixedEvent('AnimationIteration', function (ev) {
+                          if (
+                              (
+                                  $.inArray(ev.animationName, options.blowAnimations) != -1 ||
+                                  $.inArray(ev.animationName, options.swayAnimations) != -1
+                              ) &&
+                              ! elementInViewport(this)
+                          ) {
+                              $(this).remove();
+                          }
+                      })
+                      .css({
+                          '-webkit-animation': animations,
+                          animation: animations,
+                          'border-radius': randomInt(options.maxSize, (options.maxSize + Math.floor(Math.random() * 10))) + 'px ' + randomInt(1, Math.floor(width / 4)) + 'px',
+                          height: height + 'px',
+                          left: (Math.random() * document.documentElement.clientWidth - 100) + 'px',
+                          'margin-top': (-(Math.floor(Math.random() * 20) + 15)) + 'px',
+                          width: width + 'px'
+                      });
+
+                      target.append(petal);
+                  };
+
+                  // Finally: Start adding petals
+                  target.data('sakura-anim-id', requestAnimationFrame(petalCreator));
+
+              }
+              // Stop event, which stops the animation loop and removes all current blossoms
+              else if (event === 'stop') {
+
+                  // Cancel animation
+                  var animId = target.data('sakura-anim-id');
+
+                  if (animId) {
+                      cancelAnimationFrame(animId);
+                      target.data('sakura-anim-id', null);
+                  }
+
+                  // Remove all current blossoms
+                  setTimeout(function() {
+                      $('.' + options.className).remove();
+                  }, (options.newOn + 50));
+
+              }
+          };
+      }(jQuery));
+
+      $(document).ready(function() {
+          $('body').sakura();
+      });
+  </script>
+</body>
+</html>
