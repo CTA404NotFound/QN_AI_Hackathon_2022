@@ -1,5 +1,5 @@
 venv/
-model_weights/
+# model_weights/
 *.zip
 /__pycache__/
 *.pyc
