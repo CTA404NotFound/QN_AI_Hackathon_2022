@@ -43,7 +43,6 @@ def preprocessing(text):
 
 def encode_review(text, tokenizer, device, max_seq_length=256):
     text = preprocessing(text)
-    print(text)
     encodings = tokenizer.encode_plus(text, max_length = max_seq_length,
                                            truncation = True,
                                            add_special_tokens = True,
