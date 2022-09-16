@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="shortcut icon" href="https://img.icons8.com/stickers/100/000000/artificial-intelligence.png" />
+    <link rel='stylesheet', href='../static/index.css' />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src='../static/index.js'></script>
+
+    <title>CTA404NotFound</title>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="http://127.0.0.1:8000/">ReviewEvaluation</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="http://127.0.0.1:8000/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://127.0.0.1:8000/admin">Admin</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://127.0.0.1:8000/wrongrv">Invalid Reviews</a>
+          </li>
+          </ul>
+        </div>
+      </nav>
+    <h1 style="text-align:center;padding-top:10px;padding-bottom:20px; "> Reviews Table</h1>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+          <div class="card mb-2"
+            style="border-radius: 10em; background: linear-gradient(to left, #b95465, #3e76c4);">
+            <div class="card-body p-0">
+              <div class="input-group input-group-lg">
+                <input type="text" id="myInput" class="form-control form-control-lg rounde bg-transparent text-white"
+                  placeholder="Type Keywords" aria-label="Type Keywords" aria-describedby="basic-addon2" />
+                <!-- <span class="input-group-text border-0" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <input type="text" id="myInput" placeholder="Search.." style="display:block;margin: auto;width: 500px;"> -->
+
+    <div class="input" id="dataf" style="padding:20px;text-align: center;">
+        <!-- {{data}} -->
+        <table class="table table-bordered mycustombtn">
+          <thead>
+            <tr class="table-primary">
+              <!-- <th scope="col">ID</th> -->
+              <th scope="col">Review</th>
+              <th scope="col">Giải trí</th>
+              <th scope="col">Lưu trú</th>
+              <th scope="col">Nhà hàng</th>
+              <th scope="col">Ăn uống</th>
+              <th scope="col">Di chuyển</th>
+              <th scope="col">Mua sắm</th>
+              <!-- <th scope="col">Delete</th> -->
+            </tr>
+          </thead>
+          <tbody id="myTable">
+            <!-- {% set count = 1 %} -->
+            {% for rv in review_mg %}              
+              <tr>
+                  <!-- <td> {{count}} </td> -->
+                  <td> {{rv["Review"]}} </td>
+                  <td> {{rv["Giải trí"]}} </td>
+                  <td> {{rv["Lưu trú"]}} </td>
+                  <td> {{rv["Nhà hàng"]}} </td>
+                  <td> {{rv["Ăn uống"]}} </td>
+                  <td> {{rv["Di chuyển"]}} </td>
+                  <td> {{rv["Mua sắm"]}} </td>
+                  <td>
+                    
+                    {% set id = rv["_id"] %}
+                    <a class="btn btn-outline-danger" href="/delete/{{id}}">Delete</a>
+                  </td>
+              </tr>
+              <!-- {% set count =  count + 1 %} -->
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
