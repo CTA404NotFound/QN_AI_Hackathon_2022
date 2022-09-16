@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="shortcut icon" href="https://img.icons8.com/stickers/100/000000/artificial-intelligence.png" />
+    <!-- <link(rel='stylesheet', href="../styles/custom.css" /> -->
+    <title>CTA404NotFound</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="http://127.0.0.1:8000/">ReviewEvaluation</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="http://127.0.0.1:8000/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://127.0.0.1:8000/admin">Admin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://127.0.0.1:8000/wrongrv">Invalid Reviews</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    <h3 style="text-align:center;padding-top:10px; ">Invalid Reviews Table</h3>
+    <div class="input" id="dataf" style="padding:20px;text-align: center;">
+        <table class="table table-bordered mycustombtn">
+            <thead>
+              <tr class="table-primary">
+                <!-- <th scope="col">ID</th> -->
+                <th scope="col">Invalid Review</th>
+                <!-- <th scope="col">Delete</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <!-- {% set count = 1 %} -->
+              {% for rv in wr_rv %}              
+                <tr>
+                    <!-- <td> {{count}} </td> -->
+                    <td> {{rv["Review"]}} </td>
+                    <!-- <td>
+                      {% set id = rv["_id"] %}
+                      <a class="btn btn-outline-danger" href="/delete/{{id}}">Delete</a>
+                    </td> -->
+                </tr>
+                <!-- {% set count =  count + 1 %} -->
+              {% endfor %}
+            </tbody>
+          </table>
+    </div>
+</body>
+</html>
