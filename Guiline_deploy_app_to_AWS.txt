@@ -1,0 +1,74 @@
+""" Created by Cyouisme """
+# 09/13/2022
+# -*-encoding:utf-8-*-
+
+1- Create a instance ec2 (recommend to choose unbutu - 6Gb RAM and 30GB storage)
+2- Run ssh
+3- Update instance:
+	sudo apt-get update
+	sudo apt-get upgrade
+4- Install libraries need
+	sudo apt install python3-pip
+	sudo apt install unzip gunicorn nginx screen
+5- Install package for application
+	wget [link source_code]
+	unzip [source_code]
+	pip install -r requirements.txt
+  if can't install some package, pls using: pip install package_name --no-cache-dir
+5-1 Install jdk11 if need:
+	sudo apt-get install -y openjdk-11-jre-headless
+	sudo apt-get clean
+6- Setup ssl certification
+	sudo apt-get install openssl
+	sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx.key -out /etc/ssl/certs/nginx.crt
+
+  fill ip adress to follow: 
+	Country Name (2 letter code) []:
+	State or Province Name (full name) []:
+	Locality Name (eg, city) []:
+	Organization Name (eg, company) []:
+	Organizational Unit Name (eg, section) []:
+	Common Name (eg, fully qualified host name) []: your_ip_address
+	Email Address []:
+
+7- Negative to /etc/nginx/sites-enabled/ and edit server
+	cd /etc/nginx/sites-enabled/
+	sudo vi default
+	 #add this code to file:
+		server {
+    			listen              443 ssl;
+    			server_name         [www.example.com]; #convert to your server_name
+    			ssl_certificate     /etc/ssl/certs/nginx.crt;
+    			ssl_certificate_key /etc/ssl/private/nginx.key;
+    			ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+    			ssl_ciphers         HIGH:!aNULL:!MD5;
+
+			#add this location to all server
+    			location / {
+        			proxy_pass http://127.0.0.1:8000; 
+    				}
+			}
+
+	sudo service nginx restart
+8- Define screen linux
+	screen
+	screen -list
+9- Start server
+	cd [source_code]
+	gunicorn3 [file_run]:app
+	
+	ctrl + A D #Save screen session
+---- Done! ----
+
+Notes: 
+	ps -A #to view service running
+	sudo kill [gunicorn_pid]
+	sudo kill -9 [gunicorn_pid] #if gunicorn_pid is [id pts/*]
+	killall screen #kill all screen
+	screen -X -S [session # you want to kill] quit #kill 1 screen
+	scp -i [key_pair] ubuntu@[server_name]
+	
+
+
+
+
