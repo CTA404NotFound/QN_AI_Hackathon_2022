@@ -31,7 +31,7 @@ $ python main.py
 ```
 
 ## Demo
-[CTA404NotFound](https://ec2-3-84-33-149.compute-1.amazonaws.com/)
+[CTA404NotFound](https://ec2-44-211-209-6.compute-1.amazonaws.com/)
 
 ## License
 CTA 404 Not Found Team
